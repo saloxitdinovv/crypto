@@ -1,5 +1,5 @@
-import { user } from "./user"
+// import { user } from "./user"
 
-if(!user) {
-    location.assign('/pages/registration/')
-}
+// if(!user) {
+//     location.assign('/pages/registration/')
+// }

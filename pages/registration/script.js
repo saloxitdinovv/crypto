@@ -1,30 +1,56 @@
-let form = document.forms.reg
-let inputs = document.querySelectorAll('input')
+let postData = async (url, body) => {
+    const res = await fetch("http://localhost:9000/users", {
+        method: "post",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 
+    return res;
+};
+let form = document.forms[0];
+let btn = document.querySelector("button");
+let emailOrLogin = document.querySelector(".name");
+let password = document.querySelector('.password')
+let signIn = document.querySelector(".signIn");
+let signUp = document.querySelector(".signUp");
+let error;
 
-form.onsubmit = (e) => {
-    e.preventDefault();
-
-    let error = false;
-
-    inputs.forEach((inp) => {
-        if (inp.value.length === 0) {
+signIn.onclick = () => {
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        error = false;
+        if (emailOrLogin.value.length === 0 || password.value.length === 0) {
             error = true;
-            inp.classList.add("error");
+        } else error = false;
+
+        if (error) {
+            console.log("error");
         } else {
-            inp.classList.remove("error");
+            SignIn();
         }
-    })
-    if (error) {
-        return error
-    } else {
-        submit()
-    }
+    };
+};
+signUp.onclick = () => {
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        error = false;
+        if (emailOrLogin.value.length <= 0 || password.value.length <= 0) {
+            error = true;
+        } else {
+            error = false;
+        }
+        console.log(emailOrLogin.value.length, password.value.length);
+        if (error) {
+            console.log("error");
+        } else if (!error) {
+            SignUp();
+        }
+    };
+};
 
-}
-
-
-function submit() {
+function SignUp() {
     let user = {};
 
     let fm = new FormData(form);
@@ -33,6 +59,33 @@ function submit() {
         user[key] = value;
     });
     console.log(user);
-    localStorage.setItem('user', JSON.stringify(user))
 
+    postData("/users", user);
+    window.location.href = "/";
+}
+
+function SignIn() {
+    let user = {};
+
+    let fm = new FormData(form);
+
+    fm.forEach((value, key) => {
+        user[key] = value;
+    });
+
+    fetch("http://localhost:9000/users")
+        .then((res) => res.json())
+        .then((res) => {
+            res.forEach((userInfo) => {
+                console.log(userInfo);
+                if (
+                    userInfo.emailOrLogin === user.emailOrLogin &&
+                    userInfo.password === user.password
+                ) {
+                    window.location.href = "/";
+                } else {
+                    console.log("error");
+                }
+            });
+        });
 }

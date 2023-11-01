@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "json-server -p 9000 -w db.json"
   },
   "devDependencies": {
     "vite": "^4.4.5"
   },
   "dependencies": {
     "chart.js": "^4.4.0",
+    "concurrently": "^8.2.2",
+    "json-server": "^0.17.4",
     "sass": "^1.69.5"
   }
 }

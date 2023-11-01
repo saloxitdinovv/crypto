@@ -1,4 +1,4 @@
-import { user } from '/modules/user'
+// import { user } from '/modules/user'
 
 
 let aside = document.querySelector('aside')
@@ -22,7 +22,7 @@ let menu_icons = []
 
 for (let i = 0; i < 5; i++) {
     let nav_menu = document.createElement('div')
-    let menu_name = document.createElement('p')
+    let menu_name = document.createElement('a')
     let menu_icon = document.createElement('img')
 
     nav_menu.classList.add('nav_menus')
@@ -55,7 +55,7 @@ menu_names[1].innerHTML = 'Wallets'
 menu_names[2].innerHTML = 'Transactions'
 menu_names[3].innerHTML = 'Exchange'
 menu_names[4].innerHTML = 'Market'
-profile_text.innerHTML = user.email
+profile_text.innerHTML = 'User'
 logOut_text.innerHTML = 'Log Out'
 
 
@@ -67,6 +67,8 @@ menu_icons[4].src = '/public/market.svg '
 
 profile_img.src = '/public/round.svg'
 logOut_img.src = '/public/logout.svg'
+
+menu_names[2].href = '/pages/transactions/'
 
 
 title.classList.add('title')
