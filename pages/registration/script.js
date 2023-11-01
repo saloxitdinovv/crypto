@@ -33,5 +33,6 @@ function submit() {
         user[key] = value;
     });
     console.log(user);
+    localStorage.setItem('user', JSON.stringify(user))
 
 }
