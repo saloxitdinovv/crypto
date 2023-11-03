@@ -68,7 +68,14 @@ menu_icons[4].src = '/public/market.svg '
 profile_img.src = '/public/round.svg'
 logOut_img.src = '/public/logout.svg'
 
-menu_names[2].href = '/pages/transactions/'
+menu_names[2].parentElement.onclick = () => {
+    menu_names[2].parentElement.classList.add('nav_menu_active')
+    location.assign('/pages/transactions/')
+}
+menu_names[0].parentElement.onclick = () => {
+    menu_names[0].parentElement.classList.add('nav_menu_active')
+    location.assign('/')
+}
 
 
 title.classList.add('title')

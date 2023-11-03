@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.sass">
+    <link rel="stylesheet" href="style.scss">
 </head>
 <body>
-    <form name="transac">
-        <input type="currency" name="currency">
-        <input type="number" name="sum">
-        <button>do transaction</button>
-    </form>
+    <aside></aside>
+    <div class="container">
+        <header></header>
 
-    <script src="script.js"></script>
+        <hr>
+        <form name="transac">
+            <input type="currency" name="currency" class="currency">
+            <input type="number" name="sum" class="sum">
+            <button class="AddTrans">do transaction</button>
+        </form>
+
+        <div class="transactions"></div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="/modules/http.js"></script>
     <script type="module" src="/modules/aside.js"></script>
+    <script type="module" src="/modules/header.js"></script>
 </body>
 </html>
